@@ -1,0 +1,12 @@
+{
+    "env": "development",
+    "port": "YOUR_APP_PORT",
+    "db": {
+      "password": "YOUR_DB_PASSWORD",
+      "host": "YOUR_DB_HOST",
+      "name": "YOUR_DB_NAME",
+      "user": "YOUR_DB_USER",
+      "port": "YOUR_DB_PORT"
+    }
+  }
+  

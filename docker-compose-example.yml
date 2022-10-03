@@ -1,0 +1,73 @@
+version: '3.7'
+services:
+  backend:
+    build:
+      args:
+        - BUILD_PORT=8080
+        - NODE_ENV=development
+      context: .
+      dockerfile: Dockerfile
+    command: yarn dev
+    ports:
+      - 8080:8080
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_PORT=5432
+      - HOST=db
+    networks:
+      - public
+      - private
+    depends_on:
+      - db
+    volumes:
+      - ./node_modules:/home/node/app/node_modules
+      - ./backend:/home/node/app/backend
+    ipc: private
+    cap_drop:
+      - CHOWN
+      - SETUID
+      - SETGID
+      - DAC_OVERRIDE
+      - FOWNER
+      - FSETID
+      - KILL
+      - SETPCAP
+      - NET_BIND_SERVICE
+      - NET_RAW
+      - SYS_CHROOT
+      - MKNOD
+      - AUDIT_WRITE
+      - SETFCAP
+  db:
+    container_name: inversify-template-db
+    image: postgres
+    hostname: postgres
+    restart: always
+    ports:
+      - 6543:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - private
+      - public
+    environment:
+      - POSTGRES_PASSWORD=YOUR_PASSWORD
+      - POSTGRES_DB=YOUR_DB_NAME
+      - POSTGRES_USER=YOUR_USER
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+    ports:
+      - 5555:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=YOUR_EMAIL
+      - PGADMIN_DEFAULT_PASSWORD=YOUR_PASSWORD
+    networks:
+      - private
+networks:
+  public:
+  private:
+volumes:
+  db-data:

@@ -1,0 +1,11 @@
+{
+    "node-option": [
+      "es-module-specifier-resolution=node",
+      "loader=ts-node/esm",
+      "trace-warnings",
+      "no-warnings"
+    ],
+    "file": [
+      "./setupMocha.ts"
+    ]
+  }
