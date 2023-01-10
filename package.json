@@ -18,7 +18,7 @@
     "esm-resolution": "NODE_OPTIONS=\"--loader=ts-node/esm --es-module-specifier-resolution=node --trace-warnings --no-warnings\""
   },
   "dependencies": {
-    "convict": "^6.2.3",
+    "convict": "^6.2.4",
     "express": "^4.18.1",
     "inversify": "^6.0.1",
     "joi": "^17.6.0",
